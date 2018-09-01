@@ -78,6 +78,17 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 	switch(message)
 	{
 		// this message is read when the window is closed
+		case WM_PAINT:
+			{
+				PAINTSTRUCT ps;
+				HDC hdc = BeginPaint(hWnd, &ps);
+				RECT rec = { 20, 20, 60, 80 };
+				HBRUSH brush = (HBRUSH) GetStockObject(BLACK_BRUSH);
+
+				FillRect(hdc, &rec, brush);
+
+				EndPaint(hWnd, &ps);
+			} break;
 		case WM_DESTROY:
 			{
 				// close the application entirely
